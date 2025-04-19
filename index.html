@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدیریت محصولات</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // فقط به کلاس dark وابسته باشه
+    };
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://v1.fontapi.ir/css/Vazir" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+  <div class="container mx-auto p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100">مدیریت محصولات</h1>
+      <button id="theme-toggle" class="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+    <!-- دکمه گزارش سریع -->
+    <div class="mb-4">
+      <button id="report-button" class="bg-purple-600 text-white p-2 rounded-lg hover:bg-purple-700 transition dark:bg-purple-500 dark:hover:bg-purple-600 flex items-center gap-2">
+        گزارش سریع 📊
+      </button>
+    </div>
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+      <div class="flex flex-col sm:flex-row gap-4 mb-6">
+        <input id="search" class="border p-2 rounded-lg w-full sm:w-1/3 focus:ring-2 focus:ring-blue-300 transition dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" placeholder="جستجو بر اساس نام...">
+        <button id="sort-price" class="bg-gray-700 text-white dark:bg-gray-600 dark:text-gray-100 p-2 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition flex items-center gap-2">
+          مرتب‌سازی بر اساس قیمت
+          <span id="sort-icon" class="text-sm">↑</span>
+        </button>
+      </div>
+      <form id="product-form" class="flex flex-col sm:flex-row gap-4">
+        <input id="name" class="border p-2 rounded-lg flex-1 focus:ring-2 focus:ring-blue-300 transition dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" placeholder="نام محصول" required>
+        <input id="price" class="border p-2 rounded-lg flex-1 focus:ring-2 focus:ring-blue-300 transition dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" type="number" placeholder="قیمت (تومان)" required>
+        <button type="submit" class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition dark:bg-blue-500 dark:hover:bg-blue-600">اضافه کردن</button>
+      </form>
+    </div>
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg overflow-x-auto">
+      <table class="w-full border bg-white dark:bg-gray-800 rounded-lg">
+        <thead class="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th class="border p-3 text-gray-700 dark:text-gray-100">نام</th>
+            <th class="border p-3 text-gray-700 dark:text-gray-100">قیمت (تومان)</th>
+            <th class="border p-3 text-gray-700 dark:text-gray-100">عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="product-list"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal برای ویرایش محصول -->
+  <div id="edit-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-xl font-bold mb-4 dark:text-gray-100">ویرایش محصول</h2>
+      <form id="edit-form">
+        <input id="edit-name" class="border p-2 rounded-lg w-full mb-4 focus:ring-2 focus:ring-blue-300 transition dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" placeholder="نام محصول" required>
+        <input id="edit-price" class="border p-2 rounded-lg w-full mb-4 focus:ring-2 focus:ring-blue-300 transition dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600" type="number" placeholder="قیمت (تومان)" required>
+        <div class="flex gap-4">
+          <button type="submit" class="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition dark:bg-green-500 dark:hover:bg-green-600">ذخیره</button>
+          <button type="button" id="close-modal" class="bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-600 transition dark:bg-gray-600 dark:hover:bg-gray-500">بستن</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 left-4 bg-green-500 text-white p-4 rounded-lg shadow-lg hidden dark:bg-green-600">
+    <span id="toast-message"></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

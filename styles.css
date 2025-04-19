@@ -1,0 +1,119 @@
+body {
+    direction: rtl;
+    font-family: 'Vazir', sans-serif;
+    background-color: #f9fafb; /* برای اطمینان از پس‌زمینه روشن */
+  }
+  .dark body {
+    background-color: #111827; /* برای حالت تیره */
+  }
+  input, button {
+    outline: none;
+    font-family: 'Vazir', sans-serif;
+  }
+  table {
+    min-width: 100%;
+  }
+  th, td {
+    text-align: right;
+  }
+  tr {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  tr:hover {
+    background-color: #f1f5f9;
+    transform: scale(1.01);
+  }
+  .dark tr:hover {
+    background-color: #4b5563;
+  }
+  #sort-price {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  #sort-price:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  #sort-icon {
+    transition: transform 0.3s ease;
+  }
+  #edit-modal {
+    transition: opacity 0.3s ease;
+  }
+  #edit-modal.show {
+    opacity: 1;
+  }
+  #toast {
+    transition: opacity 0.3s ease;
+  }
+  #toast.show {
+    opacity: 1;
+  }
+  /* انیمیشن پرش برای ورود توست */
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .animate-bounce-in {
+    animation: bounce-in 0.5s ease;
+  }
+  /* انیمیشن محو شدن برای خروج توست */
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  .animate-fade-out {
+    animation: fade-out 0.3s ease;
+  }
+  @media (max-width: 640px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr {
+      margin-bottom: 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+    }
+    .dark tr {
+      border-color: #4b5563;
+    }
+    td {
+      border: none;
+      position: relative;
+      padding-right: 50%;
+    }
+    td:before {
+      position: absolute;
+      right: 0;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      color: #4b5563;
+    }
+    .dark td:before {
+      color: #9ca3af;
+    }
+    td:nth-of-type(1):before { content: "نام:"; }
+    td:nth-of-type(2):before { content: "قیمت:"; }
+    td:nth-of-type(3):before { content: "عملیات:"; }
+  }
